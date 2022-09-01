@@ -118,7 +118,7 @@ public class QuizServiceImpl implements IQuizService {
 			}
 
 			for (Response bundle : answersBundle) {
-				if (bundle.getQuestion().equals(question.getIdQuestion())) {
+				if (bundle.getQuestion()== question.getIdQuestion()) {
 					isFound = true;
 					//results.addAnswer(questionService.checkIsCorrectAnswer(question, bundle.getSelectedAnswer()));
 					//results.addAnswer(iQuestionSerivce.checkIsCorrectAnswerById(idQuestion, answerorder)
