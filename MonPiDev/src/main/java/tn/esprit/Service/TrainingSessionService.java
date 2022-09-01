@@ -92,7 +92,15 @@ public class TrainingSessionService implements ITrainingSessionService {
 			if (likeTsRepository.LikesTs(idTs, idUser)==0) {
 				if (user2.getId()==idUser) {
 					
-					tSrepository.findById(idTs);
+					tSrepository.findById(idTs).map(c ->{
+						
+						likets.setInteractionType(InteractionTs.Like);
+						likets.setUser(user2);
+						likets.setTs(c);
+						likets.setLiked(true);
+						return c;
+						
+					});
 					
 					likeTsRepository.save(likets);
 				}
@@ -102,6 +110,9 @@ public class TrainingSessionService implements ITrainingSessionService {
 		}
 		
 	}
+	
+	/**************************************************************************************************/
+
 	
 	
 	

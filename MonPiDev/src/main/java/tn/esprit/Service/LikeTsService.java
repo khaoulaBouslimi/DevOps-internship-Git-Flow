@@ -31,7 +31,15 @@ public class LikeTsService implements ILikeTsService {
 			if (likeTsRepository.LikesTs(idTs, idUser)==0) {
 				if (user2.getId()==idUser) {
 					
-					TsRepository.findById(idTs);
+					TsRepository.findById(idTs).map(c ->{
+						
+						likets.setInteractionType(InteractionTs.Like);
+						likets.setUser(user2);
+						likets.setTs(c);
+						likets.setLiked(true);
+						return c;
+						
+					});
 					
 					likeTsRepository.save(likets);
 				}
@@ -52,7 +60,15 @@ public class LikeTsService implements ILikeTsService {
 		if (likeTsRepository.DislikesTs(idTs, user_id)==0) {
 			
 				if (user2.getId()== user_id) {
-					TsRepository.findById(idTs);
+					TsRepository.findById(idTs).map(p -> {
+						  likes.setInteractionType(InteractionTs.Dislike);
+						  likes.setTs(p);
+						  likes.setUser(user2);
+						  likes.setLiked(false);
+						  System.out.println("ok");
+							
+							return p;
+					  });
 
 				
 				
